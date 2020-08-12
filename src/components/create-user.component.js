@@ -4,7 +4,7 @@ class CreateUser extends Component{
     render() {
         return (
              <div>
-                 <h3>Welcome to Create Users List...</h3>
+                 <p>Welcome to Create Users List...</p>
              </div>
         );
     }
