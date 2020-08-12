@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
        <div className="container">
-         <h2>MERN Front End</h2>
+         <h2>MERN Front End Development in process</h2>
        </div>
     );
   }
