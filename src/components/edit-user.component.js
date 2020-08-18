@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class EditUser extends Component {
 
     constructor(props) {
         super(props);
-
-        this.onChangeFormData = this.onChangeFormData.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             firstName: "",
@@ -20,14 +18,38 @@ class EditUser extends Component {
             province: "",
             country: ""
         }
-        console.log(`Created At: ${this.state.createdAt}`)
+
+
+        this.onSubmit = this.onSubmit.bind(this);
         this.onChangeFormData = this.onChangeFormData.bind(this);
+    }
+
+    componentDidMount() {
+        let userId = this.props.match.params.id;
+        fetch('https://immense-savannah-87656.herokuapp.com/users/' + userId)
+        .then((user) => user.json())
+        .then((user) => {
+                this.setState(() => ({
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    phone: user.phone,
+                    email: user.email,
+                    createdAt: user.createdAt,
+                    street1: user.street1,
+                    street2: user.street2,
+                    city: user.city,
+                    province: user.province,
+                    country: user.country
+                }))
+            }).catch((err) => console.log(`Something went wrong!!!`));
+
+            // console.log(`First name: ${this.state.firstName}`);
     }
 
     onChangeFormData(e) {
 
         let textId = e.target.id;
-        
+
 
         if (textId === "firstName")
             this.setState({
@@ -68,35 +90,29 @@ class EditUser extends Component {
         else
             console.log("error");
 
-       
+
     }
 
 
 
     onSubmit(e) {
         e.preventDefault();
-        
-        this.setState = {
-            firstName: "",
-            lastName: "",
-            phone: "",
-            email: "",
-            createdAt: Date.now,
-            street1: "",
-            street2: "",
-            city: "",
-            province: "",
-            country: ""
-        }
+        const userId = this.props.match.params.id;
+        const {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt} = this.state;
+
+        axios.post("https://immense-savannah-87656.herokuapp.com/users/updateUser/" + userId, {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt})
+        .then((result) => {
+            console.log("data uploaded succesfully")
+        }).catch((err) => {console.log("something went wrong..")})
     }
 
 
     render() {
         return (
             <div style={{ marginTop: 10 }}>
-                
-                <h3>Create New User</h3>
-                <hr/>
+
+                <h3>Update New User</h3>
+                <hr />
                 <form onSubmit={this.onSubmit}>
 
                     {/* FIRST NAME AND LAST NAME */}
@@ -196,7 +212,7 @@ class EditUser extends Component {
 
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Create User" className="btn btn-primary" />
+                        <input type="submit" value="Update User" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

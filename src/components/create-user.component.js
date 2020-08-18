@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class CreateUser extends Component {
 
@@ -66,9 +67,7 @@ class CreateUser extends Component {
                 country: e.target.value
             })
         else
-            console.log("error");
-
-       
+            console.log("error");  
     }
 
 
@@ -76,18 +75,12 @@ class CreateUser extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        this.setState = {
-            firstName: "",
-            lastName: "",
-            phone: "",
-            email: "",
-            createdAt: Date.now,
-            street1: "",
-            street2: "",
-            city: "",
-            province: "",
-            country: ""
-        }
+        const {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt} = this.state;
+
+        axios.post("https://immense-savannah-87656.herokuapp.com/users/addUser", {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt})
+        .then((result) => {
+            console.log("data uploaded succesfully")
+        }).catch((err) => {console.log("something went wrong..")})
     }
 
 

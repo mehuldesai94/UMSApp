@@ -27,7 +27,7 @@ class UsersList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/users/')
+        axios.get('https://immense-savannah-87656.herokuapp.com/users/')
             .then(response => {
                 this.setState({ userList: response.data });
             })
@@ -57,6 +57,7 @@ class UsersList extends Component {
                             <th>City</th>
                             <th>Province</th>
                             <th>Country</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
