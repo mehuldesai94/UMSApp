@@ -26,7 +26,7 @@ class EditUser extends Component {
 
     componentDidMount() {
         let userId = this.props.match.params.id;
-        fetch('https://immense-savannah-87656.herokuapp.com/users/' + userId)
+        fetch('https://mmd-dbconnector.herokuapp.com/users/' + userId)
         .then((user) => user.json())
         .then((user) => {
                 this.setState(() => ({

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import SuccessAlert from './successAlert';
 
 class CreateUser extends Component {
 
@@ -28,7 +29,7 @@ class CreateUser extends Component {
     onChangeFormData(e) {
 
         let textId = e.target.id;
-        
+
 
         if (textId === "firstName")
             this.setState({
@@ -67,7 +68,7 @@ class CreateUser extends Component {
                 country: e.target.value
             })
         else
-            console.log("error");  
+            console.log("error");
     }
 
 
@@ -75,21 +76,19 @@ class CreateUser extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        const {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt} = this.state;
-
-        axios.post("https://immense-savannah-87656.herokuapp.com/users/addUser", {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt})
-        .then((result) => {
-            console.log("data uploaded succesfully")
-        }).catch((err) => {console.log("something went wrong..")})
+        const { firstName, lastName, phone, email, street1, street2, city, province, country, createdAt } = this.state;
+        axios.post("https://mmd-dbconnector.herokuapp.com/users/addUser", { firstName, lastName, phone, email, street1, street2, city, province, country, createdAt })
+            .then(<SuccessAlert/>)
+            .catch((err) => { console.log("something went wrong..") })
     }
 
 
     render() {
         return (
             <div style={{ marginTop: 10 }}>
-                
+
                 <h3>Create New User</h3>
-                <hr/>
+                <hr />
                 <form onSubmit={this.onSubmit}>
 
                     {/* FIRST NAME AND LAST NAME */}
