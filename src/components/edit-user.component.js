@@ -11,7 +11,7 @@ class EditUser extends Component {
             lastName: "",
             phone: "",
             email: "",
-            createdAt: "",
+            createdAt: Date.now(),
             street1: "",
             street2: "",
             city: "",
@@ -38,7 +38,8 @@ class EditUser extends Component {
                     street2: user.street2,
                     city: user.city,
                     province: user.province,
-                    country: user.country
+                    country: user.country,
+                    createdAt: user.createdAt
                 })
             }).catch((err) => console.log(`Something went wrong!!! : ${err}` ));
  
@@ -99,7 +100,7 @@ class EditUser extends Component {
         const userId = this.props.match.params.id;
         const {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt} = this.state;
 
-        axios.post("https://immense-savannah-87656.herokuapp.com/users/updateUser/" + userId, {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt})
+        axios.post("https://mmd-db-connector.vercel.app/users/updateUser/" + userId, {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt})
         .then((result) => {
             console.log("data uploaded succesfully")
         }).catch((err) => {console.log("something went wrong..")})
