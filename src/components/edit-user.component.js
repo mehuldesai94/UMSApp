@@ -29,7 +29,7 @@ class EditUser extends Component {
         fetch('https://mmd-db-connector.vercel.app/users/' + userId)
         .then((user) => user.json())
         .then((user) => {
-                this.setState(() => ({
+                this.setState({
                     firstName: user.firstName,
                     lastName: user.lastName,
                     phone: user.phone,
@@ -39,7 +39,7 @@ class EditUser extends Component {
                     city: user.city,
                     province: user.province,
                     country: user.country
-                }))
+                })
             }).catch((err) => console.log(`Something went wrong!!! : ${err}` ));
  
             // console.log(`First name: ${this.state.firstName}`);
