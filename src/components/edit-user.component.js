@@ -11,7 +11,7 @@ class EditUser extends Component {
             lastName: "",
             phone: "",
             email: "",
-            createdAt: Date.now(),
+            createdAt: "",
             street1: "",
             street2: "",
             city: "",
@@ -26,7 +26,7 @@ class EditUser extends Component {
 
     componentDidMount() {
         let userId = this.props.match.params.id;
-        fetch('https://mmd-db-connector.vercel.app/users/' + userId)
+        fetch('https://mmd-db-connector.vercel.app/users' + userId)
         .then((user) => user.json())
         .then((user) => {
                 this.setState(() => ({
@@ -34,7 +34,6 @@ class EditUser extends Component {
                     lastName: user.lastName,
                     phone: user.phone,
                     email: user.email,
-                    createdAt: user.createdAt,
                     street1: user.street1,
                     street2: user.street2,
                     city: user.city,
