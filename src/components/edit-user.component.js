@@ -103,7 +103,7 @@ class EditUser extends Component {
         axios.post("https://mmd-db-connector.vercel.app/users/updateUser/" + userId, {firstName, lastName, phone, email, street1, street2, city, province, country, createdAt})
         .then((result) => {
             console.log("data uploaded succesfully")
-        }).catch((err) => {console.log("something went wrong..")})
+        }).catch((err) => {console.log(`something went wrong.. ${err}`)})
     }
 
 
