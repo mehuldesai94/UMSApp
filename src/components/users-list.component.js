@@ -27,7 +27,7 @@ class UsersList extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://mmd-dbconnector.herokuapp.com/users/')
+        axios.get('https://mmd-db-connector.vercel.app/users')
             .then(response => {
                 this.setState({ userList: response.data });
             })

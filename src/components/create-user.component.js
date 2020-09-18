@@ -77,7 +77,7 @@ class CreateUser extends Component {
         e.preventDefault();
 
         const { firstName, lastName, phone, email, street1, street2, city, province, country, createdAt } = this.state;
-        axios.post("https://mmd-dbconnector.herokuapp.com/users/addUser", { firstName, lastName, phone, email, street1, street2, city, province, country, createdAt })
+        axios.post("https://mmd-db-connector.vercel.app/users/addUser", { firstName, lastName, phone, email, street1, street2, city, province, country, createdAt })
             .then(<SuccessAlert/>)
             .catch((err) => { console.log("something went wrong..") })
     }
