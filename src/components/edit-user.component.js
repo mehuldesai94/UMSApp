@@ -40,8 +40,8 @@ class EditUser extends Component {
                     province: user.province,
                     country: user.country
                 }))
-            }).catch((err) => console.log(`Something went wrong!!!`));
-
+            }).catch((err) => console.log(`Something went wrong!!! : ${err}` ));
+ 
             // console.log(`First name: ${this.state.firstName}`);
     }
 
