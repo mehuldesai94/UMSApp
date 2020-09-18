@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SuccessAlert from './successAlert';
 
 class CreateUser extends Component {
 
@@ -78,7 +77,9 @@ class CreateUser extends Component {
 
         const { firstName, lastName, phone, email, street1, street2, city, province, country, createdAt } = this.state;
         axios.post("https://mmd-db-connector.vercel.app/users/addUser", { firstName, lastName, phone, email, street1, street2, city, province, country, createdAt })
-            .then(<SuccessAlert/>)
+            .then(res => {
+                alert("user added sucessfully !!");
+            })
             .catch((err) => { console.log("something went wrong..") })
     }
 
